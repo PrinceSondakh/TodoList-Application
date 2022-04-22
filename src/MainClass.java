@@ -7,7 +7,7 @@ public class MainClass {
     public static String[] model = new String[10];
 
     public static void main(String[] Prince) {
-        testAddTodoList();
+        testRemoveTodoList();
     }
     //There are 3 business logic (show , add, remove), also 3 view (show , add, remove)
     /**
@@ -73,10 +73,43 @@ public class MainClass {
     }
 
     /**
-     * To Remove from to do list
+     * To Remove from to do list (*the LOGIC)
      * */
-    public static void removeTodoList(Integer number){
+    public static boolean removeTodoList(Integer number){ //logic
+        if((number - 1) >= model.length){ //Check if number-1 more than array length
+            return false; //not valid
+        } else if (model[number - 1] == null) { //check the data in the index null or not, (kalau sblmnya tdk ada datanya)
+            return false;
+        } else {
+            model[number - 1] = null;
+            //satu
+            //dua
+            //tiga
 
+            for (int i = (number - 1); i < model.length; i++){
+                model[i] = model [i+1];
+            }
+
+
+            return true;
+        }
+    }
+
+    public static void testRemoveTodoList(){
+        addTodoList("Satu");
+        addTodoList("Dua");
+        addTodoList("Tiga");
+
+        var result = removeTodoList(20);
+        System.out.println(result);
+
+        result = removeTodoList(4);
+        System.out.println(result);
+
+        result = removeTodoList(2);
+        System.out.println(result);
+
+        showTodoList();
     }
 
     /**
