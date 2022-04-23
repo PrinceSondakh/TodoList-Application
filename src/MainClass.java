@@ -6,8 +6,10 @@ public class MainClass {
 
     public static String[] model = new String[10];
 
+    public static java.util.Scanner scanner = new java.util.Scanner(System.in);
+
     public static void main(String[] Prince) {
-        testRemoveTodoList();
+        testViewShowTodoList();
     }
     //There are 3 business logic (show , add, remove), also 3 view (show , add, remove)
     /**
@@ -80,17 +82,14 @@ public class MainClass {
             return false; //not valid
         } else if (model[number - 1] == null) { //check the data in the index null or not, (kalau sblmnya tdk ada datanya)
             return false;
-        } else {
-            model[number - 1] = null;
-            //satu
-            //dua
-            //tiga
-
+        } else { /** logic UNTUK MENGGESER ANGKA =================================== bro*/
             for (int i = (number - 1); i < model.length; i++){
-                model[i] = model [i+1];
+                if(i == (model.length - 1)){
+                    model[i] = null;
+                } else {
+                    model[i] = model[i + 1];
+                }
             }
-
-
             return true;
         }
     }
@@ -99,11 +98,13 @@ public class MainClass {
         addTodoList("Satu");
         addTodoList("Dua");
         addTodoList("Tiga");
+        addTodoList("Empat");
+        addTodoList("Lima");
 
         var result = removeTodoList(20);
         System.out.println(result);
 
-        result = removeTodoList(4);
+        result = removeTodoList(7);
         System.out.println(result);
 
         result = removeTodoList(2);
@@ -112,11 +113,53 @@ public class MainClass {
         showTodoList();
     }
 
+    public static String input(String info){
+        System.out.print(info +" : ");
+        String data = scanner.nextLine();
+        return data;
+    }
+
+    public static void testInput(){
+        var name = input("Nama");
+        System.out.println("Hi " + name);
+
+        var channel = input("Channel");
+        System.out.println(channel);
+    }
+
     /**
      * To view the main menu of to do list
      * */
     public static void viewShowTodoList(){
+        while(true){ //dilakukan perulangan agar tidak berhenti sekali
+            showTodoList();
 
+            System.out.println("Menu");
+            System.out.println("1. Tambah");
+            System.out.println("2. Hapus");
+            System.out.println("x. Keluar");
+
+            var input = input("Pilih");
+
+            if(input.equals("1")){ //Komparasi biasa number / ==... string yaitu equals
+                viewAddTodoList();
+            } else if (input.equals("2")){
+                viewRemoveTodoList();
+            } else if (input.equals("x")){
+                break;
+            } else {
+                System.out.println("Pilihan tidak dimengerti");
+            }
+        }
+    }
+
+    public static void testViewShowTodoList(){
+        addTodoList("Satu");
+        addTodoList("Dua");
+        addTodoList("Tiga");
+        addTodoList("Empat");
+        addTodoList("Lima");
+        viewShowTodoList();
     }
 
     /**
