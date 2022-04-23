@@ -1,5 +1,3 @@
-import java.sql.SQLOutput;
-
 public class MainClass {
     /**
      *
@@ -11,7 +9,7 @@ public class MainClass {
     public static java.util.Scanner scanner = new java.util.Scanner(System.in);
 
     public static void main(String[] Prince) {
-        testViewAddTodoList();
+        viewShowTodoList();
     }
     //There are 3 business logic (show , add, remove), also 3 view (show , add, remove)
     /**
@@ -200,11 +198,24 @@ public class MainClass {
             //batal
         } else {
             boolean success = removeTodoList(Integer.valueOf(number));
-            if(!success){
-                System.out.println("Gagal menghapus todolist : " + number);
+            if (!success){
+                System.out.println("Failed to deleting todolist that you inputted : " + number);
             }
         }
     }
+
+    public static void testViewRemoveTodoList(){
+        addTodoList("Satu");
+        addTodoList("Dua");
+        addTodoList("Tiga");
+
+        showTodoList();
+
+        viewRemoveTodoList();
+
+        showTodoList();
+    }
+
 }
 
 
