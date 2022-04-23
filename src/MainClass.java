@@ -1,3 +1,5 @@
+import java.sql.SQLOutput;
+
 public class MainClass {
     /**
      *
@@ -9,13 +11,14 @@ public class MainClass {
     public static java.util.Scanner scanner = new java.util.Scanner(System.in);
 
     public static void main(String[] Prince) {
-        testViewShowTodoList();
+        testViewAddTodoList();
     }
     //There are 3 business logic (show , add, remove), also 3 view (show , add, remove)
     /**
      * To show main menu from to do list
      * */
     public static void showTodoList(){
+        System.out.println("TODOLIST");
         for (var i = 0; i < model.length; i++){
             String todo = model[i];
             var no = i + 1;
@@ -166,13 +169,43 @@ public class MainClass {
      * To view the add of to do list
      * */
     public static void viewAddTodoList(){
+        System.out.println("ADD TO DO LIST");
 
+        var todo = input("Todo (x Jika Batal)");
+
+        if(todo.equals("x")){
+            //batal
+        } else {
+            addTodoList(todo);
+        }
+    }
+
+    public static void testViewAddTodoList(){
+        addTodoList("Satu");
+        addTodoList("Dua");
+        viewAddTodoList();
+
+        showTodoList();
     }
 
     /**
      * To view the remove of to do list
      * */
     public static void viewRemoveTodoList(){
+        System.out.println("DELETING TODOLIST");
 
+        var number = input("Delete number that you wish (x Jika Batal)");
+
+        if(number.equals("x")){
+            //batal
+        } else {
+            boolean success = removeTodoList(Integer.valueOf(number));
+            if(!success){
+                System.out.println("Gagal menghapus todolist : " + number);
+            }
+        }
     }
 }
+
+
+
