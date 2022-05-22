@@ -208,7 +208,6 @@ public class MainClass {
         addTodoList("Satu");
         addTodoList("Dua");
         addTodoList("Tiga");
-        //a
         showTodoList();
 
         viewRemoveTodoList();
