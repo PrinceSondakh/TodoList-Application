@@ -204,7 +204,7 @@ public class MainClass {
         }
     }
 
-    public static void testViewRemoveTodoList(){ //to test to show viewremovetodolist awawaa
+    public static void testViewRemoveTodoList(){ //to test to show viewremovetodolist awawa
         addTodoList("Satu");
         addTodoList("Dua");
         addTodoList("Tiga");
